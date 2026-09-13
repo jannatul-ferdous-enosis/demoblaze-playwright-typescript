@@ -126,7 +126,7 @@ test.describe('Product Detail Page', () => {
     expect(url.endsWith('/') || url.includes('index.html') || url.endsWith('demoblaze.com')).toBe(true);
   });
 
-  test('4.12 Product price format', async () => {
+  test('4.14 Product price format', async () => {
     await productDetailPage.goto(1);
     const price = await productDetailPage.getProductPrice();
     expect(price).toMatch(/^\$\d+/);
