@@ -141,7 +141,7 @@ test.describe("Product Detail Page", () => {
     ).toBe(true);
   });
 
-  test("4.16 Product price format", async () => {
+  test('4.14 Product price format', async () => {
     await productDetailPage.goto(1);
     const price = await productDetailPage.getProductPrice();
     expect(price).toMatch(/^\$\d+/);
