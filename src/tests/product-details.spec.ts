@@ -1,11 +1,15 @@
 import { test, expect } from "@playwright/test";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import HomePage from "../pages/HomePage";
+import { createLogger } from "../utils/logger";
+
+const log = createLogger("ProductDetailTests");
 
 let productDetailPage: ProductDetailPage;
 let homePage: HomePage;
 
 test.beforeEach(async ({ page }) => {
+  log.info("Setting up ProductDetail test");
   productDetailPage = new ProductDetailPage(page);
   homePage = new HomePage(page);
 });

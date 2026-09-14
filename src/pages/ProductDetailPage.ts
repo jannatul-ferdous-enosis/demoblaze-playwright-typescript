@@ -1,4 +1,7 @@
 import { Page, Locator } from '@playwright/test';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('ProductDetailPage');
 
 export default class ProductDetailPage {
   readonly page: Page;
@@ -26,6 +29,7 @@ export default class ProductDetailPage {
   }
 
   async goto(productId: number): Promise<void> {
+    log.info('Navigating to product detail', { productId });
     await this.page.goto(`/prod.html?idp_=${productId}`);
   }
 
@@ -58,6 +62,7 @@ export default class ProductDetailPage {
   }
 
   async addToCartAndAcceptDialog(): Promise<string | null> {
+    log.info('Adding to cart and accepting dialog');
     try {
       const dialogPromise = this.page.waitForEvent('dialog', { timeout: 10_000 });
       await this.addToCartButton.click();

@@ -1,4 +1,7 @@
 import { Page, Locator } from '@playwright/test';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('HomePage');
 
 export default class HomePage {
   readonly page: Page;
@@ -96,6 +99,7 @@ export default class HomePage {
   }
 
   async goto(): Promise<void> {
+    log.info('Navigating to home page');
     await this.page.goto('/');
   }
 
@@ -184,14 +188,17 @@ export default class HomePage {
   }
 
   async clickPhonesFilter(): Promise<void> {
+    log.debug('Clicking Phones filter');
     await this.phonesFilter.click();
   }
 
   async clickLaptopsFilter(): Promise<void> {
+    log.debug('Clicking Laptops filter');
     await this.laptopsFilter.click();
   }
 
   async clickMonitorsFilter(): Promise<void> {
+    log.debug('Clicking Monitors filter');
     await this.monitorsFilter.click();
   }
 
@@ -236,6 +243,7 @@ export default class HomePage {
   }
 
   async clickProductCard(index: number): Promise<void> {
+    log.debug('Clicking product card', { index });
     await this.productCards.nth(index).locator('.card-title a').click();
   }
 

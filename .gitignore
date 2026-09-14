@@ -9,6 +9,9 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
+# Logs
+/logs/
+
 # Environment files
 .env
 .env.*

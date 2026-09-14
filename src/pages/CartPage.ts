@@ -1,4 +1,7 @@
 import { Page, Locator } from '@playwright/test';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('CartPage');
 
 export default class CartPage {
   readonly page: Page;
@@ -32,6 +35,7 @@ export default class CartPage {
   }
 
   async goto(): Promise<void> {
+    log.info('Navigating to cart page');
     await this.page.goto('/cart.html');
   }
 
@@ -49,6 +53,7 @@ export default class CartPage {
   }
 
   async deleteRow(index: number): Promise<void> {
+    log.debug('Deleting cart row', { index });
     await this.cartRows.nth(index).locator('a', { hasText: 'Delete' }).click();
     await this.page.waitForTimeout(500);
   }

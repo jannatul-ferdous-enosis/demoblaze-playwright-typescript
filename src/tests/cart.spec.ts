@@ -2,6 +2,9 @@ import { test, expect, Page, BrowserContext } from '@playwright/test';
 import CartPage from '../pages/CartPage';
 import ProductDetailPage from '../pages/ProductDetailPage';
 import HomePage from '../pages/HomePage';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('CartTests');
 
 let cartPage: CartPage;
 let productDetailPage: ProductDetailPage;
@@ -30,6 +33,7 @@ async function addProduct(page: Page, productId: number): Promise<void> {
 
 test.describe('Cart', () => {
   test.beforeEach(async ({ page }) => {
+    log.info("Setting up Cart test");
     cartPage = new CartPage(page);
     productDetailPage = new ProductDetailPage(page);
     homePage = new HomePage(page);

@@ -4,12 +4,16 @@ import SignUpPage from '../pages/SignUpPage';
 import LoginPage from '../pages/LoginPage';
 import { uniqueUsername } from '../utils/testHelpers';
 import { PASSWORD } from '../data/authData';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('HomePageTests');
 
 let homePage: HomePage;
 let signUpPage: SignUpPage;
 let loginPage: LoginPage;
 
 test.beforeEach(async ({ page }) => {
+  log.info("Setting up HomePage test");
   homePage = new HomePage(page);
   signUpPage = new SignUpPage(page);
   loginPage = new LoginPage(page);

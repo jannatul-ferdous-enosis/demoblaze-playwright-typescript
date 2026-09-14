@@ -1,4 +1,7 @@
 import { Page, Locator } from '@playwright/test';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('OrderPage');
 
 export default class OrderPage {
   readonly page: Page;
@@ -52,6 +55,7 @@ export default class OrderPage {
   }
 
   async openModal(): Promise<void> {
+    log.info('Opening order modal');
     const placeOrderBtn = this.page.locator('button', { hasText: 'Place Order' });
     await placeOrderBtn.click();
     await this.modal.waitFor({ state: 'visible', timeout: 5000 });
@@ -113,6 +117,7 @@ export default class OrderPage {
   }
 
   async clickPurchase(): Promise<void> {
+    log.info('Clicking purchase button');
     await this.purchaseButton.click();
   }
 

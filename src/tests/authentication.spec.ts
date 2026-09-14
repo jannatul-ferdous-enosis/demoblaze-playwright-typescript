@@ -4,6 +4,9 @@ import SignUpPage from "../pages/SignUpPage";
 import LoginPage from "../pages/LoginPage";
 import { uniqueUsername, longString } from "../utils/testHelpers";
 import { PASSWORD, INJECTION_SCRIPTS, WHITESPACE_ONLY } from "../data/authData";
+import { createLogger } from "../utils/logger";
+
+const log = createLogger("AuthTests");
 
 let homePage: HomePage;
 let signUpPage: SignUpPage;
@@ -11,6 +14,7 @@ let loginPage: LoginPage;
 
 test.describe("Sign Up", () => {
   test.beforeEach(async ({ page }) => {
+    log.info("Setting up Sign Up test");
     homePage = new HomePage(page);
     signUpPage = new SignUpPage(page);
     loginPage = new LoginPage(page);

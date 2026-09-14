@@ -1,4 +1,7 @@
 import { Page, Locator } from '@playwright/test';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('SignUpPage');
 
 export default class SignUpPage {
   readonly page: Page;
@@ -40,6 +43,7 @@ export default class SignUpPage {
   }
 
   async clickAndAcceptDialog(): Promise<string> {
+    log.info('Clicking sign up and accepting dialog');
     const dialogPromise = this.page.waitForEvent('dialog', { timeout: 10000 });
     await this.page.evaluate(() => setTimeout(() => (window as any).register(), 0));
     const dialog = await dialogPromise;

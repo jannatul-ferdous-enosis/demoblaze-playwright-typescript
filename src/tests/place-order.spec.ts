@@ -1,6 +1,9 @@
 import { test, expect, Page } from '@playwright/test';
 import CartPage from '../pages/CartPage';
 import OrderPage from '../pages/OrderPage';
+import { createLogger } from '../utils/logger';
+
+const log = createLogger('PlaceOrderTests');
 
 let cartPage: CartPage;
 let orderPage: OrderPage;
@@ -37,6 +40,7 @@ async function addProduct(page: Page, productId: number): Promise<void> {
 
 test.describe('Place Order / Checkout', () => {
   test.beforeEach(async ({ page }) => {
+    log.info("Setting up Place Order test");
     cartPage = new CartPage(page);
     orderPage = new OrderPage(page);
     await page.goto('/');
