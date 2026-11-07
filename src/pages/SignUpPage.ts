@@ -16,7 +16,7 @@ export default class SignUpPage {
     this.page = page;
     this.modal = page.locator('#signInModal');
     this.usernameInput = page.locator('#sign-username');
-    this.passwordInput = page.locator('#sign-password');
+    this.passwordInput = page.locator('#sign-password6');
     this.signUpButton = this.modal.locator('button.btn-primary', { hasText: 'Sign up' });
     this.closeButton = this.modal.locator('button.btn-secondary', { hasText: 'Close' });
     this.xButton = this.modal.locator('button.close');
