@@ -1,20 +1,21 @@
 import { defineConfig, devices } from "@playwright/test";
+import dotenv from "dotenv";
+// Load environment variables from .env file
+dotenv.config();
 
-declare const process: {
-  env: {
-    CI?: string;
-  };
-};
-
+/**
+ * Single Playwright configuration for the project (lives in the repo root).
+ * See https://playwright.dev/docs/test-configuration.
+ */
 export default defineConfig({
-  testDir: "../tests",
+  testDir: "./src/tests",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: "html",
   use: {
-    baseURL: "https://www.demoblaze.com/",
+    baseURL: process.env.BASE_URL,
     trace: "on-first-retry",
     screenshot: "on",
     video: "on-first-retry",
@@ -25,5 +26,5 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  outputDir: "../test-results",
+  outputDir: "./test-results",
 });

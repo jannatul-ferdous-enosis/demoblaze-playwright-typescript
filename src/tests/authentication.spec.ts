@@ -46,7 +46,7 @@ test.describe("Sign Up", () => {
     await signUpPage.fillUsername(username);
     await signUpPage.fillPassword(PASSWORD);
     const message = await signUpPage.clickAndAcceptDialog();
-    expect(message).toBe("Sign up successful.");
+    expect(message).toBe("Sign up unsuccessful..");  
     await signUpPage.waitForModalToClose();
   });
 
